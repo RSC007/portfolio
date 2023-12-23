@@ -29,7 +29,7 @@ export default function Contact() {
               letterSpacing: "2px",
             }}
           >
-            Get in Touch
+            Get in Touch 1
           </Typography>
           <Box>
             <Map center={[51.505, -0.09]} zoom={13} scrollWheelZoom={false}>
