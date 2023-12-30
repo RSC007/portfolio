@@ -7,30 +7,48 @@ import {
   ListItemText,
   Typography,
 } from "@mui/material";
-import HomeIcon from "@mui/icons-material/Home";
-import AttachFileIcon from "@mui/icons-material/AttachFile";
-import AccountTreeIcon from "@mui/icons-material/AccountTree";
-import AdbIcon from "@mui/icons-material/Adb";
-import BookIcon from "@mui/icons-material/Book";
-import ConnectWithoutContactIcon from "@mui/icons-material/ConnectWithoutContact";
+import { Icon } from "@iconify/react";
 
 import { matchPath, useLocation, useNavigate } from "react-router-dom";
 
 const color = "#4c4c4c";
 const menuItems = [
-  { path: "home", title: "Home", icon: <HomeIcon sx={{ color }} /> },
-  { path: "about", title: "About", icon: <AttachFileIcon sx={{ color }} /> },
   {
-    path: "projects",
-    title: "Projects",
-    icon: <AccountTreeIcon sx={{ color }} />,
+    path: "",
+    title: "Home",
+    icon: (
+      <Icon icon="mdi:home" style={{ color, width: "22px", height: "22px" }} />
+    ),
   },
-  { path: "skills", title: "Skills", icon: <AdbIcon sx={{ color }} /> },
-  { path: "blog", title: "Blog", icon: <BookIcon sx={{ color }} /> },
+  {
+    path: "about",
+    title: "About",
+    icon: (
+      <Icon
+        icon="fontisto:person"
+        style={{ color, width: "22px", height: "22px" }}
+      />
+    ),
+  },
+  {
+    path: "portfolio",
+    title: "Portfolio",
+    icon: (
+      <Icon
+        icon="zondicons:portfolio"
+        style={{ color, width: "22px", height: "22px" }}
+      />
+    ),
+  },
   {
     path: "contact",
     title: "Contact",
-    icon: <ConnectWithoutContactIcon sx={{ color }} />,
+    icon: (
+      <Icon
+        icon="fluent:contact-card-link-16-filled"
+        style={{ color, width: "22px", height: "22px" }}
+      />
+    ),
   },
 ];
 
@@ -39,7 +57,7 @@ export default function SideBar() {
 
   const navigate = useNavigate();
   const isActiveRoot = (path = "") =>
-    path ? !!matchPath({ path, end: false }, pathname) : false;
+    path ? !!matchPath({ path, end: false }, pathname) : true;
   return (
     <>
       <Typography
