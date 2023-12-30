@@ -9,6 +9,8 @@ import {
 } from "@mui/material";
 import { Fade } from "react-reveal";
 import ArrowRightIcon from "@mui/icons-material/ArrowRight";
+
+import MyPic from "../assets/About2.jpg";
 import {
   backgroundColor,
   bioList,
@@ -49,10 +51,12 @@ export default function About() {
           <Box
             sx={{
               width: "100%",
-              height: "550px",
+              height: "auto",
               border: "2px solid",
               marginBottom: "38px",
             }}
+            component="img"
+            src={MyPic}
           ></Box>
 
           {/* Information  */}
