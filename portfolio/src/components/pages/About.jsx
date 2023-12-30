@@ -9,128 +9,16 @@ import {
 } from "@mui/material";
 import { Fade } from "react-reveal";
 import ArrowRightIcon from "@mui/icons-material/ArrowRight";
-import { backgroundColor } from "../constants";
-
-const bioList = [
-  {
-    title: "Birthday",
-    value: "16/March/1998",
-  },
-  {
-    title: "Age",
-    value: "25",
-  },
-  {
-    title: "Address",
-    value: "Umiyanagar-2, Navagam, Surat",
-  },
-  {
-    title: "Email",
-    value: "rushichitte1998@gmail.com",
-  },
-  {
-    title: "Phone",
-    value: "+91-70439-52537",
-  },
-  {
-    title: "Nationality",
-    value: "India",
-  },
-  {
-    title: "Study",
-    value: "SPPU of Pune",
-  },
-  {
-    title: "Degree",
-    value: "IT Engineering",
-  },
-  {
-    title: "Interest",
-    value: "Traveling, Learing, Anime",
-  },
-  {
-    title: "Freelance",
-    value: "Available",
-  },
-];
-
-const coddingLanguage = [
-  {
-    title: "JavaScript",
-    value: 80,
-  },
-  {
-    title: "React Js",
-    value: 80,
-  },
-  {
-    title: "Node Js & Express",
-    value: 60,
-  },
-  {
-    title: "HTML & CSS",
-    value: 90,
-  },
-];
-
-const language = [
-  {
-    title: "English",
-    value: 80,
-  },
-  {
-    title: "Hindi",
-    value: 90,
-  },
-  {
-    title: "Marathi",
-    value: 100,
-  },
-  {
-    title: "Gujarati",
-    value: 60,
-  },
-];
-
-const knowledge = [
-  "BootStrap, Material-UI",
-  "React Js",
-  "Node Js, Express Js",
-  "Java & Python ( Basics )",
-];
-
-const interest = [
-  "System Design ( React )",
-  "Code Optimization",
-  "Learning langauage",
-  "Site Optimization",
-];
-
-const experiance = [
-  {
-    period: " June-2021 To Dec-2022 (On-Site)",
-    company: "Bigscal Technology PVT",
-    description:
-      "Working as Frontend developer, Responsiblity to provide responsive ui and features as per stack holders requirement.",
-  },
-  {
-    period: "Dec-2022 To Present (WFH)",
-    company: "ContactPoint360",
-    description:
-      "Working on product, responsiblity to provide enhance feature and responsive ui. On other hand also providing the support for another proeject to improve the ui and codding structure.",
-  },
-];
-
-const education = [
-  {
-    period: "2016-2017 ( 12th Science )",
-    collage: "Gurukrupa High School",
-  },
-  {
-    period: "May 2017 - June 2021",
-    collage: "D.Y.Patil Collage Of Engineering ( SPPU )",
-  },
-];
+import {
+  backgroundColor,
+  bioList,
+  coddingLanguage,
+  language,
+  knowledge,
+  interest,
+  experiance,
+  education,
+} from "../constants";
 
 export default function About() {
   return (
@@ -201,7 +89,16 @@ export default function About() {
               ))}
             </Grid>
 
-            <Button variant="contained">Download CV</Button>
+            <Button
+              variant="contained"
+              onClick={() => {
+                window.open(
+                  "https://drive.google.com/file/d/1T2VevKk_tVhiMKS_1PFVpv4XZ9rQ8zFi/view?usp=sharing"
+                );
+              }}
+            >
+              Download CV
+            </Button>
           </Box>
         </Box>
 

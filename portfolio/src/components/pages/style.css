@@ -1,4 +1,4 @@
-.leaflet-container {
+/* .leaflet-container {
   height: 600px;
   width: 100%;
 }
@@ -6,4 +6,15 @@
 .leaflet-div-icon {
   background: transparent;
   border: none;
+} */
+
+.markercluster-map {
+  height: 50vh;
+}
+
+.leaflet-layer,
+.leaflet-control-zoom-in,
+.leaflet-control-zoom-out,
+.leaflet-control-attribution {
+  filter: invert(100%) hue-rotate(180deg) brightness(95%) contrast(90%);
 }
