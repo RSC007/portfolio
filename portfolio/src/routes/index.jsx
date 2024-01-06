@@ -1,11 +1,11 @@
 import { Navigate, useRoutes } from "react-router-dom";
 
 import Home from "../components/pages/Home";
-import Layout from "../components/Common/Layout";
 import Projects from "../components/pages/Projects";
 import About from "../components/pages/About";
 import Contact from "../components/pages/Contact";
 import Page404 from "../components/pages/Page404";
+import Layout from "../components/common/Layout";
 
 export const Router = () => {
   return useRoutes([
