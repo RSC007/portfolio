@@ -77,7 +77,7 @@ export default function Contact() {
               marginBottom: 5,
             }}
           >
-            Get in Touch
+            Get in Touch 1
           </Typography>
           <Box>
             <Map
