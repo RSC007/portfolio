@@ -24,14 +24,11 @@ export default function Projects() {
     <Fade left>
       <Box
         sx={{
-          width: "90%",
-          margin: "auto",
           display: "flex",
           flexDirection: "column",
           justifyContent: "center",
           alignItems: "center",
           minHeight: "100vh",
-          backgroundColor: "#f8f8f8",
           paddingY: "56px",
         }}
       >

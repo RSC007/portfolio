@@ -1,14 +1,17 @@
-import { useState } from "react";
-import { Box, Toolbar } from "@mui/material";
-import Layout from "./components/Common/Layout";
-import { backgroundColor } from "./components/constants";
+import { useContext, useState } from "react";
+import { Box, ThemeProvider, createTheme } from "@mui/material";
+
 import { Router } from "./routes";
+import { Context } from "./components/contextApi";
 import "../src/components/pages/style.css";
-import { useLocation } from "react-router-dom";
+import { amber, deepOrange, green, grey, purple } from "@mui/material/colors";
 
 function App() {
+  const context = useContext(Context);
+  const {
+    theme: { theme },
+  } = context;
   // Animation
-  const loacation = useLocation();
   const [cursorX, setCursorX] = useState();
   const [cursorY, setCursorY] = useState();
 
@@ -17,33 +20,47 @@ function App() {
     setCursorY(e.clientY);
   });
 
-  const isSidebar = loacation?.pathname?.startsWith("/app");
-  const drawerWidth = isSidebar ? 300 : 0;
+  const MUItheme = createTheme({
+    palette: {
+      mode: theme,
+      ...(theme === "light"
+        ? {
+            primary: amber,
+            divider: amber[200],
+            text: {
+              primary: grey[900],
+              secondary: grey[800],
+            },
+          }
+        : {
+            primary: grey,
+            divider: grey[700],
+            background: {
+              default: grey[900],
+              paper: grey[900],
+            },
+            text: {
+              primary: "#fff",
+              secondary: grey[500],
+            },
+          }),
+    },
+  });
+
   return (
     <>
-      <Box sx={{ display: "flex" }}>
-        <Layout drawerWidth={drawerWidth} />
-        <Box
-          component="main"
-          sx={{
-            flexGrow: 1,
-            margin: 0,
-            padding: 0,
-            background: backgroundColor,
-            width: { sm: `calc(100% - ${drawerWidth}px)` },
-          }}
-        >
-          {/* <Toolbar /> */}
+      <ThemeProvider theme={MUItheme}>
+        <Box sx={{ display: "flex" }}>
           <Router />
         </Box>
-      </Box>
-      <div
-        id="move-cursor"
-        style={{
-          left: cursorX + "px",
-          top: cursorY + "px",
-        }}
-      />
+        <div
+          id="move-cursor"
+          style={{
+            left: cursorX + "px",
+            top: cursorY + "px",
+          }}
+        />
+      </ThemeProvider>
     </>
   );
 }

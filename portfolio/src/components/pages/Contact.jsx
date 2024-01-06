@@ -27,7 +27,6 @@ export default function Contact() {
         message: Yup.string().required("Please enter the message"),
       }),
       onSubmit: (values) => {
-        console.log("values", values);
         emailjs
           .send(
             import.meta.env.VITE_EMAILJS_SERVICE_ID,
@@ -46,29 +45,25 @@ export default function Contact() {
               onErroMessage("Something went wrong !");
             }
           );
-        console.log("values", values);
       },
     });
 
   const onReset = () => resetForm();
 
-  console.log("process.env.REACT_APP_EMAILJS_SERVICE_ID", import.meta.env);
   return (
     <Fade left>
       <Box
         sx={{
-          width: "90%",
-          margin: "auto",
           display: "flex",
+          flexGrow: 1,
           flexDirection: "column",
           justifyContent: "center",
           alignItems: "center",
           minHeight: "100vh",
-          backgroundColor: "#f8f8f8",
           paddingY: "56px",
         }}
       >
-        <Box sx={{ width: "90%" }}>
+        <Box sx={{ width: "50vw" }}>
           <Typography
             sx={{
               fontSize: "28px",

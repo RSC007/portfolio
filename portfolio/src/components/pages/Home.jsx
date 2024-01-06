@@ -67,7 +67,6 @@ export default function Home() {
               }}
             >
               <Typed
-                // typedRef={(typed) => typed}
                 strings={[
                   "Frontend Developer",
                   "React Js Developer",
@@ -163,7 +162,7 @@ export default function Home() {
                   borderRadius: "12px",
                 }}
               >
-                <Typography variant="subtitle1">Codding Nijas</Typography>
+                <Typography variant="subtitle1" letterSpacing="4px">LeetCode</Typography>
                 <Paper
                   sx={{
                     maxWidth: "100px",
@@ -173,10 +172,15 @@ export default function Home() {
                     alignItems: "center",
                     borderRadius: "12px",
                     padding: "16px",
+                    cursor: "pointer",
+                    letterSpacing: "2px",
                   }}
+                  onClick={() =>
+                    onRedirect("https://leetcode.com/rushichitte1998/")
+                  }
                 >
-                  <Typography fontSize="40px" fontWeight={800}>
-                    99+
+                  <Typography letterSpacing="2px" fontSize="40px" fontWeight={800}>
+                    76+
                   </Typography>
                 </Paper>
               </Box>
@@ -189,7 +193,7 @@ export default function Home() {
                   borderRadius: "12px",
                 }}
               >
-                <Typography variant="subtitle1">LeetCode</Typography>
+                <Typography variant="subtitle1" letterSpacing="4px">Codding Nijas</Typography>
                 <Paper
                   sx={{
                     maxWidth: "100px",
@@ -199,10 +203,16 @@ export default function Home() {
                     alignItems: "center",
                     borderRadius: "12px",
                     padding: "16px",
+                    cursor: "pointer",
                   }}
+                  onClick={() =>
+                    onRedirect(
+                      "https://www.codingninjas.com/studio/profile/025be801-4500-45a0-8d11-88f75b3cdf3f"
+                    )
+                  }
                 >
-                  <Typography fontSize="40px" fontWeight={800}>
-                    99+
+                  <Typography letterSpacing="2px" fontSize="40px" fontWeight={800}>
+                    132+
                   </Typography>
                 </Paper>
               </Box>

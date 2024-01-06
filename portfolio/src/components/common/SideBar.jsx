@@ -1,100 +1,179 @@
+import { useContext, useEffect, useState } from "react";
 import {
   Toolbar,
-  List,
-  ListItem,
-  ListItemButton,
-  ListItemIcon,
-  ListItemText,
   Typography,
+  styled,
+  useTheme,
+  Box,
+  CssBaseline,
+  IconButton,
+  Drawer,
+  Divider,
 } from "@mui/material";
-import { Icon } from "@iconify/react";
+import MuiAppBar from "@mui/material/AppBar";
+import MenuIcon from "@mui/icons-material/Menu";
+import Brightness6Icon from "@mui/icons-material/Brightness6";
+import Brightness4Icon from "@mui/icons-material/Brightness4";
+import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
+import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 
-import { matchPath, useLocation, useNavigate } from "react-router-dom";
+import SideBarList from "./SideBarList";
+import { Context } from "../contextApi";
 
-const color = "#4c4c4c";
-const menuItems = [
-  {
-    path: "app/home",
-    title: "Home",
-    icon: (
-      <Icon icon="mdi:home" style={{ color, width: "22px", height: "22px" }} />
-    ),
-  },
-  {
-    path: "app/about",
-    title: "About",
-    icon: (
-      <Icon
-        icon="fontisto:person"
-        style={{ color, width: "22px", height: "22px" }}
-      />
-    ),
-  },
-  {
-    path: "app/portfolio",
-    title: "Portfolio",
-    icon: (
-      <Icon
-        icon="zondicons:portfolio"
-        style={{ color, width: "22px", height: "22px" }}
-      />
-    ),
-  },
-  {
-    path: "app/contact",
-    title: "Contact",
-    icon: (
-      <Icon
-        icon="fluent:contact-card-link-16-filled"
-        style={{ color, width: "22px", height: "22px" }}
-      />
-    ),
-  },
-];
+const drawerWidth = 340;
 
-export default function SideBar() {
-  const { pathname } = useLocation();
+const Main = styled("main", { shouldForwardProp: (prop) => prop !== "open" })(
+  ({ theme, open }) => ({
+    flexGrow: 1,
+    padding: theme.spacing(3),
+    transition: theme.transitions.create("margin", {
+      easing: theme.transitions.easing.sharp,
+      duration: theme.transitions.duration.leavingScreen,
+    }),
+    marginLeft: `-${drawerWidth}px`,
+    position: "relative",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    paddingX: "56px",
+    height: "auto",
+    overflowY: "auto",
+    ...(open && {
+      transition: theme.transitions.create("margin", {
+        easing: theme.transitions.easing.easeOut,
+        duration: theme.transitions.duration.enteringScreen,
+      }),
+      marginLeft: 0,
+    }),
+  })
+);
 
-  const navigate = useNavigate();
-  const isActiveRoot = (path = "") =>
-    path ? !!matchPath({ path, end: false }, pathname) : true;
+const AppBar = styled(MuiAppBar, {
+  shouldForwardProp: (prop) => prop !== "open",
+})(({ theme, open }) => ({
+  transition: theme.transitions.create(["margin", "width"], {
+    easing: theme.transitions.easing.sharp,
+    duration: theme.transitions.duration.leavingScreen,
+  }),
+  ...(open && {
+    width: `calc(100% - ${drawerWidth}px)`,
+    marginLeft: `${drawerWidth}px`,
+    transition: theme.transitions.create(["margin", "width"], {
+      easing: theme.transitions.easing.easeOut,
+      duration: theme.transitions.duration.enteringScreen,
+    }),
+  }),
+}));
+
+const DrawerHeader = styled("div")(({ theme }) => ({
+  display: "flex",
+  alignItems: "center",
+  padding: theme.spacing(0, 1),
+  // necessary for content to be below app bar
+  ...theme.mixins.toolbar,
+  justifyContent: "flex-end",
+}));
+
+export default function SideBar({ children }) {
+  const theme = useTheme();
+  const [open, setOpen] = useState(true);
+
+  const context = useContext(Context);
+  const {
+    theme: { theme: mode, toggleTheme },
+  } = context;
+
+  const handleDrawerOpen = () => {
+    setOpen(true);
+  };
+
+  const handleDrawerClose = () => {
+    setOpen(false);
+  };
+
+  window.addEventListener("resize", (event) => {
+    event.currentTarget.innerWidth >= 900 && setOpen(true);
+  });
+
   return (
     <>
-      <Typography
+      <Box
         sx={{
-          fontWeight: 700,
-          fontSize: "24px",
-          letterSpacing: "4px",
           display: "flex",
-          justifyContent: "center",
+          maxWidth: "100vw",
+          width: "100%",
+          position: "relative",
         }}
       >
-        Rushikesh
-      </Typography>
-      <Toolbar
-        sx={{
-          justifyContent: "center",
-          "& .MuiPaper-root": {
-            justifyContent: "center",
-          },
-        }}
-      >
-        <List>
-          {menuItems.map((item, index) => (
-            <ListItem key={index} disablePadding>
-              <ListItemButton onClick={() => navigate(item?.path)}>
-                <ListItemIcon>{item?.icon}</ListItemIcon>
-                <ListItemText
-                  sx={{
-                    color: isActiveRoot(item?.path) ? "black" : "#9f8f8f",
-                  }}
-                  primary={item?.title}
-                />
-              </ListItemButton>
-            </ListItem>
-          ))}
-        </List>
-      </Toolbar>
+        <Box
+          sx={{
+            position: "absolute",
+            top: "10px",
+            left: "25px",
+            display: { md: "none" },
+          }}
+        >
+          <IconButton
+            color="inherit"
+            aria-label="open drawer"
+            onClick={handleDrawerOpen}
+            edge="start"
+            sx={{ mr: 2, ...(open && { display: "none" }) }}
+          >
+            <MenuIcon />
+          </IconButton>
+        </Box>
+        <CssBaseline />
+        <Drawer
+          sx={{
+            width: drawerWidth,
+            flexShrink: 0,
+            "& .MuiDrawer-paper": {
+              width: drawerWidth,
+              boxSizing: "border-box",
+              justifyContent: "center",
+              alignItems: "center",
+              position: "relative",
+              height: "100vh",
+            },
+          }}
+          variant="persistent"
+          anchor="left"
+          open={open}
+        >
+          <Box
+            sx={{
+              position: "absolute",
+              top: "10px",
+              right: "10px",
+              display: { md: "none" },
+            }}
+          >
+            <IconButton onClick={handleDrawerClose}>
+              {theme.direction === "ltr" ? (
+                <ChevronLeftIcon />
+              ) : (
+                <ChevronRightIcon />
+              )}
+            </IconButton>
+          </Box>
+          <SideBarList />
+        </Drawer>
+        <Main open={open}>
+          <Box
+            sx={{
+              position: "absolute",
+              top: "10px",
+              right: "15px",
+            }}
+          >
+            <IconButton color="inherit" onClick={toggleTheme}>
+              {mode === "dark" ? <Brightness6Icon /> : <Brightness4Icon />}
+            </IconButton>
+          </Box>
+          {children}
+        </Main>
+      </Box>
     </>
   );
 }
