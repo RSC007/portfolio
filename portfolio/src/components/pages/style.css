@@ -18,3 +18,55 @@
 .leaflet-control-attribution {
   filter: invert(100%) hue-rotate(180deg) brightness(95%) contrast(90%);
 }
+
+
+/* Social Icon */
+
+#social-icon {
+  transition: margin-top 0.5s;
+}
+
+#social-icon:hover {
+  cursor: "pointer";
+  margin-top: -18px;
+}
+
+/* Cursor animation */
+
+#move-cursor {
+  position: fixed;
+  border-radius: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  pointer-events: none;
+  left: -100px;
+  top: 50%;
+  mix-blend-mode: difference;
+  background-color: transparent;
+  z-index: 10000;
+  border: 3px solid rgb(143, 116, 241);
+  height: 30px;
+  width: 30px;
+  transition: all 100ms ease-out;
+}
+
+
+/* blob animation */
+#my-profile {
+  box-shadow: 0px 20px 5px 5px rgba(0, 0, 0, 0.2);
+  animation: animation 5s ease-in-out infinite;
+  transition: all 1s ease-in-out;
+}
+
+@keyframes animation {
+  0% {
+    border-radius: 60% 40% 30% 70%/60% 30% 70% 40%;
+  }
+
+  50% {
+    border-radius: 30% 60% 70% 40%/50% 60% 30% 60%;
+  }
+
+  100% {
+    border-radius: 60% 40% 30% 70%/60% 30% 70% 60%;
+  }
+}

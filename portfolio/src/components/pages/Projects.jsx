@@ -125,7 +125,19 @@ export default function Projects() {
                 </Typography>
               </AccordionSummary>
               <AccordionDetails>
-                <Typography variant="h5" fontWeight={600}>
+                <Typography
+                  variant="h5"
+                  fontWeight={600}
+                  sx={{
+                    cursor: "pointer",
+                  }}
+                  onClick={() => {
+                    window.open(
+                      "https://contactpoint360.h2r.ai/app/dashboard",
+                      "_blank"
+                    );
+                  }}
+                >
                   <Icon
                     icon="prime:link"
                     style={{
@@ -135,14 +147,8 @@ export default function Projects() {
                       verticalAlign: "middle",
                       cursor: "pointer",
                     }}
-                    onClick={() => {
-                      window.open(
-                        "https://contactpoint360.h2r.ai/app/dashboard",
-                        "_blank"
-                      );
-                    }}
                   />{" "}
-                  H2R (Hire to Rehide)
+                  H2R (Hire to Rehire)
                 </Typography>
                 <List>
                   <ListItem>
@@ -179,7 +185,17 @@ export default function Projects() {
                     </Typography>
                   </ListItem>
                 </List>
-                <Typography variant="h5" fontWeight={600}>
+                <Typography
+                  variant="h5"
+                  fontWeight={600}
+                  sx={{ cursor: "pointer" }}
+                  onClick={() => {
+                    window.open(
+                      "http://dvcareer.cp360apps.com/About",
+                      "_blank"
+                    );
+                  }}
+                >
                   <Icon
                     icon="prime:link"
                     style={{
@@ -188,12 +204,6 @@ export default function Projects() {
                       height: "22px",
                       verticalAlign: "middle",
                       cursor: "pointer",
-                    }}
-                    onClick={() => {
-                      window.open(
-                        "http://dvcareer.cp360apps.com/About",
-                        "_blank"
-                      );
                     }}
                   />{" "}
                   Careers
