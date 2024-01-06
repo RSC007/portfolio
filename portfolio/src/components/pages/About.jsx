@@ -6,6 +6,7 @@ import {
   Button,
   Paper,
   LinearProgress,
+  alpha,
 } from "@mui/material";
 import { Fade } from "react-reveal";
 import ArrowRightIcon from "@mui/icons-material/ArrowRight";
@@ -27,14 +28,11 @@ export default function About() {
     <Fade left>
       <Box
         sx={{
-          width: "90%",
-          margin: "auto",
           display: "flex",
           flexDirection: "column",
           justifyContent: "center",
           alignItems: "center",
           minHeight: "100vh",
-          backgroundColor: "#f8f8f8",
           paddingY: "56px",
         }}
       >
@@ -66,11 +64,11 @@ export default function About() {
             <Divider sx={{ marginY: 3 }} />
 
             <Typography marginBottom={2} variant="subtitle2">
-              This is dummy test for experiance purpose. just checking
-            </Typography>
-            <Typography variant="subtitle2">
-              This is dummy test for experiance purpose. just checking, This is
-              dummy test for experiance purpose. just checking
+              Dedicated and skilled React.js developer with 2.6+ years of hands
+              on experience in building dynamic and responsive web applications.
+              Proficient in creating interactive user interfaces and ensuring
+              seamless user experiences through the use of React components,
+              state management, and third-party libraries.
             </Typography>
             <Divider sx={{ marginY: 3 }} />
 
@@ -216,7 +214,7 @@ export default function About() {
                           paddingY: "4px",
                           paddingX: "8px",
                           borderRadius: "30%",
-                          background: backgroundColor,
+                          background: alpha(backgroundColor, 0.5),
                           fontWeight: 600,
                         }}
                       >
@@ -258,7 +256,7 @@ export default function About() {
                           paddingY: "4px",
                           paddingX: "8px",
                           borderRadius: "30%",
-                          background: backgroundColor,
+                          background: alpha(backgroundColor, 0.5),
                           fontWeight: 600,
                         }}
                       >
