@@ -14,14 +14,14 @@ import { matchPath, useLocation, useNavigate } from "react-router-dom";
 const color = "#4c4c4c";
 const menuItems = [
   {
-    path: "",
+    path: "app/home",
     title: "Home",
     icon: (
       <Icon icon="mdi:home" style={{ color, width: "22px", height: "22px" }} />
     ),
   },
   {
-    path: "about",
+    path: "app/about",
     title: "About",
     icon: (
       <Icon
@@ -31,7 +31,7 @@ const menuItems = [
     ),
   },
   {
-    path: "portfolio",
+    path: "app/portfolio",
     title: "Portfolio",
     icon: (
       <Icon
@@ -41,7 +41,7 @@ const menuItems = [
     ),
   },
   {
-    path: "contact",
+    path: "app/contact",
     title: "Contact",
     icon: (
       <Icon
@@ -69,7 +69,7 @@ export default function SideBar() {
           justifyContent: "center",
         }}
       >
-        JavaScript
+        Rushikesh
       </Typography>
       <Toolbar
         sx={{

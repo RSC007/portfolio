@@ -94,11 +94,15 @@ export default function About() {
             </Grid>
 
             <Button
+              size="large"
               variant="contained"
               onClick={() => {
                 window.open(
                   "https://drive.google.com/file/d/1T2VevKk_tVhiMKS_1PFVpv4XZ9rQ8zFi/view?usp=sharing"
                 );
+              }}
+              sx={{
+                textTransform: "none",
               }}
             >
               Download CV

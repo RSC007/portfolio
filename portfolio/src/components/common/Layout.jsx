@@ -14,17 +14,17 @@ import { Outlet } from "react-router-dom";
 import SideBar from "./SideBar";
 
 export default function Layout({ drawerWidth = 0, ...props }) {
-  const { window } = props;
+  const { window: wd } = props;
 
   const container =
-    window !== undefined ? () => window().document.body : undefined;
+    wd !== undefined ? () => wd().document.body : undefined;
 
   const [mobileOpen, setMobileOpen] = useState(false);
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
   };
-  
+
   return (
     <>
       <CssBaseline />

@@ -1,4 +1,4 @@
-import { Avatar, Box, Typography } from "@mui/material";
+import { Avatar, Box, Paper, Typography } from "@mui/material";
 import { Icon } from "@iconify/react";
 import Typed from "react-typed";
 import Fade from "react-reveal/Fade";
@@ -20,6 +20,7 @@ export default function Home() {
           justifyContent: "center",
           alignItems: "center",
           height: "100vh",
+          flexDirection: "column",
         }}
       >
         <Box
@@ -36,33 +37,17 @@ export default function Home() {
           }}
         >
           <Box
+            id="my-profile"
             sx={{
               width: "350px",
-              height: "350px",
+              height: "auto",
               display: "flex",
               justifyContent: "center",
               alignItems: "center",
             }}
-          >
-            <Avatar
-              alt="Image"
-              src={MyPic}
-              sx={{
-                width: "300px",
-                height: "300px",
-                // border: "2px solid",
-                // borderRadius: "50%",
-              }}
-            />
-            {/* <Box
-              sx={{
-                width: "300px",
-                height: "300px",
-                border: "2px solid",
-                borderRadius: "50%",
-              }}
-            ></Box> */}
-          </Box>
+            component="img"
+            src={MyPic}
+          ></Box>
           <Box display="flex" flexDirection="column" gap={2} paddingX={2}>
             <Typography
               variant="h3"
@@ -95,19 +80,26 @@ export default function Home() {
             </Typography>
             <Typography
               variant="subtitle2"
-              sx={{ fontWeight: 600, letterSpacing: "2px", color: "#767676" }}
+              sx={{
+                fontWeight: 600,
+                lineHeight: 2,
+                letterSpacing: "2px",
+                color: "#767676",
+              }}
             >
               Creative developer based in Gujarat, India and <br />
               happy to travel all over the World
             </Typography>
 
             <Box
+              marginTop={2}
               display="flex"
-              gap="4px"
+              gap={2}
               alignItems="center"
               justifyContent="flex-start"
             >
               <Icon
+                id="social-icon"
                 style={{
                   width: 22,
                   height: 22,
@@ -121,8 +113,9 @@ export default function Home() {
                 }
               />
               <Icon
+                id="social-icon"
                 style={{
-                  width: 44,
+                  width: 22,
                   height: 22,
                   cursor: "pointer",
                 }}
@@ -132,8 +125,9 @@ export default function Home() {
                 }
               />
               <Icon
+                id="social-icon"
                 style={{
-                  width: 44,
+                  width: 22,
                   height: 22,
                   cursor: "pointer",
                 }}
@@ -143,8 +137,9 @@ export default function Home() {
                 }
               />
               <Icon
+                id="social-icon"
                 style={{
-                  width: 44,
+                  width: 22,
                   height: 22,
                   cursor: "pointer",
                 }}
@@ -155,6 +150,62 @@ export default function Home() {
                   )
                 }
               />
+            </Box>
+
+            {/* Active Platform */}
+            <Box sx={{ display: "flex", gap: 3 }}>
+              <Box
+                sx={{
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  flexDirection: "column",
+                  borderRadius: "12px",
+                }}
+              >
+                <Typography variant="subtitle1">Codding Nijas</Typography>
+                <Paper
+                  sx={{
+                    maxWidth: "100px",
+                    height: "75px",
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    borderRadius: "12px",
+                    padding: "16px",
+                  }}
+                >
+                  <Typography fontSize="40px" fontWeight={800}>
+                    99+
+                  </Typography>
+                </Paper>
+              </Box>
+              <Box
+                sx={{
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  flexDirection: "column",
+                  borderRadius: "12px",
+                }}
+              >
+                <Typography variant="subtitle1">LeetCode</Typography>
+                <Paper
+                  sx={{
+                    maxWidth: "100px",
+                    height: "75px",
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    borderRadius: "12px",
+                    padding: "16px",
+                  }}
+                >
+                  <Typography fontSize="40px" fontWeight={800}>
+                    99+
+                  </Typography>
+                </Paper>
+              </Box>
             </Box>
           </Box>
         </Box>
