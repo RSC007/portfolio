@@ -5,6 +5,22 @@
             "destination": "/app/:path*"
         },
         {
+            "source": "/app/home",
+            "destination": "/app/home*"
+        },
+        {
+            "source": "/app/about",
+            "destination": "/app/about"
+        },
+        {
+            "source": "/app/portfolio",
+            "destination": "/app/portfolio"
+        },
+        {
+            "source": "/app/contact",
+            "destination": "/app/contact"
+        },
+        {
             "source": "/(.*)",
             "destination": "/404"
         }
