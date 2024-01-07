@@ -39,7 +39,7 @@ export default function Home() {
           <Box
             id="my-profile"
             sx={{
-              width: "350px",
+              width: { md: "350px", sm: "350px", xs: "250px" },
               height: "auto",
               display: "flex",
               justifyContent: "center",
@@ -48,10 +48,19 @@ export default function Home() {
             component="img"
             src={MyPic}
           ></Box>
-          <Box display="flex" flexDirection="column" gap={2} paddingX={2}>
+          <Box
+            display="flex"
+            flexDirection="column"
+            gap={2}
+            paddingX={2}
+            sx={{
+              marginTop: 0,
+            }}
+          >
             <Typography
               variant="h3"
               sx={{
+                textAlign: { md: "left", sm: "center", xs: "center" },
                 fontWeight: 600,
                 letterSpacing: "2px",
                 textDecoration: "underline",
@@ -61,6 +70,7 @@ export default function Home() {
             </Typography>
             <Typography
               sx={{
+                textAlign: { md: "left", sm: "center", xs: "center" },
                 fontWeight: 500,
                 fontSize: 32,
                 letterSpacing: "2px",
@@ -80,6 +90,7 @@ export default function Home() {
             <Typography
               variant="subtitle2"
               sx={{
+                textAlign: { md: "left", sm: "center", xs: "center" },
                 fontWeight: 600,
                 lineHeight: 2,
                 letterSpacing: "2px",
@@ -95,7 +106,13 @@ export default function Home() {
               display="flex"
               gap={2}
               alignItems="center"
-              justifyContent="flex-start"
+              sx={{
+                justifyContent: {
+                  md: "flex-start",
+                  sm: "center",
+                  xs: "center",
+                },
+              }}
             >
               <Icon
                 id="social-icon"
@@ -152,7 +169,17 @@ export default function Home() {
             </Box>
 
             {/* Active Platform */}
-            <Box sx={{ display: "flex", gap: 3 }}>
+            <Box
+              sx={{
+                display: "flex",
+                gap: 3,
+                justifyContent: {
+                  md: "flex-start",
+                  sm: "center",
+                  xs: "center",
+                },
+              }}
+            >
               <Box
                 sx={{
                   display: "flex",
@@ -162,7 +189,9 @@ export default function Home() {
                   borderRadius: "12px",
                 }}
               >
-                <Typography variant="subtitle1" letterSpacing="4px">LeetCode</Typography>
+                <Typography variant="subtitle1" letterSpacing="4px">
+                  LeetCode
+                </Typography>
                 <Paper
                   sx={{
                     maxWidth: "100px",
@@ -179,7 +208,11 @@ export default function Home() {
                     onRedirect("https://leetcode.com/rushichitte1998/")
                   }
                 >
-                  <Typography letterSpacing="2px" fontSize="40px" fontWeight={800}>
+                  <Typography
+                    letterSpacing="2px"
+                    fontSize="40px"
+                    fontWeight={800}
+                  >
                     76+
                   </Typography>
                 </Paper>
@@ -193,7 +226,9 @@ export default function Home() {
                   borderRadius: "12px",
                 }}
               >
-                <Typography variant="subtitle1" letterSpacing="4px">Codding Nijas</Typography>
+                <Typography variant="subtitle1" letterSpacing="4px">
+                  Codding Nijas
+                </Typography>
                 <Paper
                   sx={{
                     maxWidth: "100px",
@@ -211,7 +246,11 @@ export default function Home() {
                     )
                   }
                 >
-                  <Typography letterSpacing="2px" fontSize="40px" fontWeight={800}>
+                  <Typography
+                    letterSpacing="2px"
+                    fontSize="40px"
+                    fontWeight={800}
+                  >
                     132+
                   </Typography>
                 </Paper>

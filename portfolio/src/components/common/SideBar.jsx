@@ -105,24 +105,6 @@ export default function SideBar({ children }) {
           position: "relative",
         }}
       >
-        <Box
-          sx={{
-            position: "absolute",
-            top: "10px",
-            left: "25px",
-            display: { md: "none" },
-          }}
-        >
-          <IconButton
-            color="inherit"
-            aria-label="open drawer"
-            onClick={handleDrawerOpen}
-            edge="start"
-            sx={{ mr: 2, ...(open && { display: "none" }) }}
-          >
-            <MenuIcon />
-          </IconButton>
-        </Box>
         <CssBaseline />
         <Drawer
           sx={{
@@ -141,30 +123,45 @@ export default function SideBar({ children }) {
           anchor="left"
           open={open}
         >
-          <Box
+          <IconButton
             sx={{
               position: "absolute",
               top: "10px",
               right: "10px",
+              zIndex: 999,
               display: { md: "none" },
             }}
+            onClick={handleDrawerClose}
           >
-            <IconButton onClick={handleDrawerClose}>
-              {theme.direction === "ltr" ? (
-                <ChevronLeftIcon />
-              ) : (
-                <ChevronRightIcon />
-              )}
-            </IconButton>
-          </Box>
-          <SideBarList />
+            {theme.direction === "ltr" ? (
+              <ChevronLeftIcon />
+            ) : (
+              <ChevronRightIcon />
+            )}
+          </IconButton>
+          <SideBarList onClose={handleDrawerClose} />
         </Drawer>
         <Main open={open}>
+            <IconButton
+              color="inherit"
+              onClick={handleDrawerOpen}
+              sx={{
+                position: "absolute",
+                top: "10px",
+                left: "15px",
+                mr: 2,
+                zIndex: 999,
+                ...(open && { display: "none" }),
+              }}
+            >
+              <MenuIcon />
+            </IconButton>
           <Box
             sx={{
               position: "absolute",
               top: "10px",
               right: "15px",
+              zIndex: 999
             }}
           >
             <IconButton color="inherit" onClick={toggleTheme}>

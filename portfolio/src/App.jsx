@@ -1,10 +1,10 @@
 import { useContext, useState } from "react";
 import { Box, ThemeProvider, createTheme } from "@mui/material";
+import { amber, grey } from "@mui/material/colors";
 
 import { Router } from "./routes";
 import { Context } from "./components/contextApi";
 import "../src/components/pages/style.css";
-import { amber, deepOrange, green, grey, purple } from "@mui/material/colors";
 
 function App() {
   const context = useContext(Context);
@@ -28,8 +28,8 @@ function App() {
             primary: amber,
             divider: amber[200],
             text: {
-              primary: grey[900],
-              secondary: grey[800],
+              primary: "#000000",
+              secondary: "#7f8583",
             },
           }
         : {
