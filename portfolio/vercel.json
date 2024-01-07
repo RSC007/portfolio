@@ -1,12 +1,12 @@
 {
-    "routes": [
+    "rewrites": [
         {
-            "src": "/app/(.*)",
-            "dest": "/app/$1"
+            "source": "/app/:path*",
+            "destination": "/app/:path*"
         },
         {
-            "src": "/(.*)",
-            "dest": "/404"
+            "source": "/(.*)",
+            "destination": "/404"
         }
     ]
 }
