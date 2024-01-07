@@ -1,18 +1,12 @@
 {
     "routes": [
         {
-            "src": "/app",
-            "dest": "/app"
-        },
-        {
-            "src": "/[^.]+",
-            "dest": "/",
-            "status": 200
+            "src": "/app/(.*)",
+            "dest": "/app/$1"
         },
         {
             "src": "/(.*)",
-            "dest": "/404",
-            "status": 200
+            "dest": "/404"
         }
     ]
 }
