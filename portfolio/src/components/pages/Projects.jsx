@@ -35,7 +35,7 @@ export default function Projects() {
         <Box sx={{ width: "90%" }}>
           <Typography
             sx={{
-              fontSize: "28px",
+              fontSize: "24px",
               fontWeight: 700,
               letterSpacing: "2px",
               marginBottom: 5,
@@ -53,6 +53,11 @@ export default function Projects() {
                 expandIcon={<ExpandMoreIcon />}
                 aria-controls="panel1bh-content"
                 id="panel1bh-header"
+                sx={{
+                  "& .MuiAccordionSummary-content": {
+                    flexWrap: "wrap",
+                  }
+                }}
               >
                 <Typography sx={{ width: "33%", flexShrink: 0 }}>
                   Bigscal Technologies (On-Site)
@@ -113,6 +118,11 @@ export default function Projects() {
                 expandIcon={<ExpandMoreIcon />}
                 aria-controls="panel2bh-content"
                 id="panel2bh-header"
+                sx={{
+                  "& .MuiAccordionSummary-content": {
+                    flexWrap: "wrap",
+                  }
+                }}
               >
                 <Typography sx={{ width: "33%", flexShrink: 0 }}>
                   ContactPoint360 (WFH)

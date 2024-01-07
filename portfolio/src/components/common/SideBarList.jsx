@@ -9,7 +9,9 @@ import {
   ListItemText,
   Toolbar,
   Typography,
+  useMediaQuery,
 } from "@mui/material";
+import { useTheme } from "@emotion/react";
 
 const menuItems = [
   {
@@ -46,12 +48,20 @@ const menuItems = [
   },
 ];
 
-export default function SideBarList() {
+export default function SideBarList({ onClose }) {
   const { pathname } = useLocation();
+  const theme = useTheme();
+
+  const matches = useMediaQuery("(max-width:900px)");
 
   const navigate = useNavigate();
   const isActiveRoot = (path = "") =>
     path ? !!matchPath({ path, end: false }, pathname) : true;
+
+  const onTabSelect = (path) => {
+    navigate(path);
+    matches && onClose();
+  };
 
   return (
     <>
@@ -77,11 +87,27 @@ export default function SideBarList() {
         <List>
           {menuItems.map((item, index) => (
             <ListItem key={index} disablePadding>
-              <ListItemButton onClick={() => navigate(item?.path)}>
-                <ListItemIcon>{item?.icon}</ListItemIcon>
+              <ListItemButton onClick={() => onTabSelect(item?.path)}>
+                <ListItemIcon
+                  sx={{
+                    "&.MuiListItemIcon-root": {
+                      color:
+                        theme?.palette?.text[
+                          isActiveRoot(item?.path) ? "primary" : "secondary"
+                        ],
+                    },
+                  }}
+                >
+                  {item?.icon}
+                </ListItemIcon>
                 <ListItemText
                   sx={{
-                    fontWeight: isActiveRoot(item?.path) ? 800 : 500,
+                    "& .MuiTypography-root": {
+                      color:
+                        theme?.palette?.text[
+                          isActiveRoot(item?.path) ? "primary" : "secondary"
+                        ],
+                    },
                   }}
                   primary={item?.title}
                 />
