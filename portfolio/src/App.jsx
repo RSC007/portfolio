@@ -53,13 +53,14 @@ function App() {
         <Box sx={{ display: "flex" }}>
           <Router />
         </Box>
-        <div
+        {/* Cursor effect */}
+        {/* <div
           id="move-cursor"
           style={{
             left: cursorX + "px",
             top: cursorY + "px",
           }}
-        />
+        /> */}
       </ThemeProvider>
     </>
   );

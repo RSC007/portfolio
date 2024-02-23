@@ -10,6 +10,7 @@ import {
   Toolbar,
   Typography,
   useMediaQuery,
+  Box,
 } from "@mui/material";
 import { useTheme } from "@emotion/react";
 
@@ -64,7 +65,7 @@ export default function SideBarList({ onClose }) {
   };
 
   return (
-    <>
+    <Box>
       <Typography
         sx={{
           fontWeight: 700,
@@ -116,6 +117,6 @@ export default function SideBarList({ onClose }) {
           ))}
         </List>
       </Toolbar>
-    </>
+    </Box>
   );
 }

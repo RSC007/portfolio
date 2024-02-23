@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import {
   Toolbar,
-  Typography,
+  useMediaQuery,
   styled,
   useTheme,
   Box,
@@ -31,13 +31,13 @@ const Main = styled("main", { shouldForwardProp: (prop) => prop !== "open" })(
       duration: theme.transitions.duration.leavingScreen,
     }),
     marginLeft: `-${drawerWidth}px`,
-    
+
     position: "relative",
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
     paddingX: "56px",
-    height: "100vh",
+    height: "100%",
     overflowY: "auto",
     ...(open && {
       transition: theme.transitions.create("margin", {
@@ -67,7 +67,6 @@ const AppBar = styled(MuiAppBar, {
 }));
 
 const DrawerHeader = styled("div")(({ theme }) => ({
-
   display: "flex",
   alignItems: "center",
   padding: theme.spacing(0, 1),
@@ -79,6 +78,8 @@ const DrawerHeader = styled("div")(({ theme }) => ({
 export default function SideBar({ children }) {
   const theme = useTheme();
   const [open, setOpen] = useState(true);
+
+  const isToggleSideBar = useMediaQuery("(min-width:900px)");
 
   const context = useContext(Context);
   const {
@@ -93,9 +94,9 @@ export default function SideBar({ children }) {
     setOpen(false);
   };
 
-  window.addEventListener("resize", (event) => {
-    event.currentTarget.innerWidth >= 900 && setOpen(true);
-  });
+  useEffect(() => {
+    setOpen(isToggleSideBar);
+  }, [isToggleSideBar]);
 
   return (
     <>
@@ -144,26 +145,27 @@ export default function SideBar({ children }) {
           <SideBarList onClose={handleDrawerClose} />
         </Drawer>
         <Main open={open}>
-            <IconButton
-              color="inherit"
-              onClick={handleDrawerOpen}
-              sx={{
-                position: "absolute",
-                top: "10px",
-                left: "15px",
-                mr: 2,
-                zIndex: 999,
-                ...(open && { display: "none" }),
-              }}
-            >
-              <MenuIcon />
-            </IconButton>
+          <IconButton
+            color="inherit"
+            onClick={handleDrawerOpen}
+            sx={{
+              position: "absolute",
+              top: "10px",
+              left: "15px",
+              mr: 2,
+              zIndex: 999,
+              ...(open && { display: "none" }),
+            }}
+          >
+            <MenuIcon />
+          </IconButton>
           <Box
             sx={{
               position: "absolute",
               top: "10px",
               right: "15px",
-              zIndex: 999
+              zIndex: 999,
+              height: "100vh",
             }}
           >
             <IconButton color="inherit" onClick={toggleTheme}>
