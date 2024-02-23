@@ -31,12 +31,13 @@ const Main = styled("main", { shouldForwardProp: (prop) => prop !== "open" })(
       duration: theme.transitions.duration.leavingScreen,
     }),
     marginLeft: `-${drawerWidth}px`,
+    
     position: "relative",
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
     paddingX: "56px",
-    height: "auto",
+    height: "100vh",
     overflowY: "auto",
     ...(open && {
       transition: theme.transitions.create("margin", {
@@ -66,6 +67,7 @@ const AppBar = styled(MuiAppBar, {
 }));
 
 const DrawerHeader = styled("div")(({ theme }) => ({
+
   display: "flex",
   alignItems: "center",
   padding: theme.spacing(0, 1),
