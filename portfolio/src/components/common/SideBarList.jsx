@@ -1,122 +1,95 @@
-import React from "react";
-import { Icon } from "@iconify/react";
-import { matchPath, useLocation, useNavigate } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import {
+  Avatar,
+  Box,
   List,
-  ListItem,
   ListItemButton,
   ListItemIcon,
   ListItemText,
-  Toolbar,
   Typography,
-  useMediaQuery,
-  Box,
 } from "@mui/material";
-import { useTheme } from "@emotion/react";
+import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
+import PersonOutlineIcon from "@mui/icons-material/PersonOutline";
+import WorkOutlineIcon from "@mui/icons-material/WorkOutline";
+import ContactMailOutlinedIcon from "@mui/icons-material/ContactMailOutlined";
+
+import SocialLinks from "./SocialLinks";
+import { designation, fullName } from "../constants";
 
 const menuItems = [
-  {
-    path: "/app/home",
-    title: "Home",
-    icon: <Icon icon="mdi:home" style={{ width: "22px", height: "22px" }} />,
-  },
-  {
-    path: "/app/about",
-    title: "About",
-    icon: (
-      <Icon icon="fontisto:person" style={{ width: "22px", height: "22px" }} />
-    ),
-  },
-  {
-    path: "/app/portfolio",
-    title: "Portfolio",
-    icon: (
-      <Icon
-        icon="zondicons:portfolio"
-        style={{ width: "22px", height: "22px" }}
-      />
-    ),
-  },
-  {
-    path: "/app/contact",
-    title: "Contact",
-    icon: (
-      <Icon
-        icon="fluent:contact-card-link-16-filled"
-        style={{ width: "22px", height: "22px" }}
-      />
-    ),
-  },
+  { path: "/app/home", title: "Home", Icon: HomeOutlinedIcon },
+  { path: "/app/about", title: "About", Icon: PersonOutlineIcon },
+  { path: "/app/portfolio", title: "Portfolio", Icon: WorkOutlineIcon },
+  { path: "/app/contact", title: "Contact", Icon: ContactMailOutlinedIcon },
 ];
 
-export default function SideBarList({ onClose }) {
-  const { pathname } = useLocation();
-  const theme = useTheme();
-
-  const matches = useMediaQuery("(max-width:900px)");
-
-  const navigate = useNavigate();
-  const isActiveRoot = (path = "") =>
-    path ? !!matchPath({ path, end: false }, pathname) : true;
-
-  const onTabSelect = (path) => {
-    navigate(path);
-    matches && onClose();
-  };
-
+export default function SideBarList({ onNavigate }) {
   return (
-    <Box>
-      <Typography
-        sx={{
-          fontWeight: 700,
-          fontSize: "24px",
-          letterSpacing: "4px",
-          display: "flex",
-          justifyContent: "center",
-        }}
-      >
-        Rushikesh
-      </Typography>
-      <Toolbar
-        sx={{
-          justifyContent: "center",
-          "& .MuiPaper-root": {
-            justifyContent: "center",
-          },
-        }}
-      >
-        <List>
-          {menuItems.map((item, index) => (
-            <ListItem key={index} disablePadding>
-              <ListItemButton onClick={() => onTabSelect(item?.path)}>
-                <ListItemIcon
-                  sx={{
-                    "&.MuiListItemIcon-root": {
-                      color:
-                        theme?.palette?.text[
-                          isActiveRoot(item?.path) ? "primary" : "secondary"
-                        ],
-                    },
-                  }}
-                >
-                  {item?.icon}
-                </ListItemIcon>
-                <ListItemText
-                  sx={{
-                    "& .MuiTypography-root": {
-                      color:
-                        theme?.palette?.text[
-                          isActiveRoot(item?.path) ? "primary" : "secondary"
-                        ],
-                    },
-                  }}
-                  primary={item?.title}
-                />
-              </ListItemButton>
-            </ListItem>
-          ))}
-        </List>
-      </Toolbar>
+    <Box
+      sx={{
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        px: 3,
+        py: 4,
+        gap: 3,
+      }}
+    >
+      <Box sx={{ textAlign: "center" }}>
+        <Avatar
+          sx={{
+            width: 64,
+            height: 64,
+            mx: "auto",
+            mb: 1.5,
+            bgcolor: "primary.main",
+            color: "primary.contrastText",
+            fontWeight: 700,
+            fontSize: 24,
+          }}
+        >
+          RC
+        </Avatar>
+        <Typography sx={{ fontWeight: 700, fontSize: 22, letterSpacing: "3px" }}>
+          {fullName.split(" ")[0]}
+        </Typography>
+        <Typography variant="body2" color="text.secondary">
+          {designation}
+        </Typography>
+      </Box>
+
+      <List sx={{ width: "100%" }}>
+        {menuItems.map(({ path, title, Icon }) => (
+          <ListItemButton
+            key={path}
+            component={NavLink}
+            to={path}
+            onClick={onNavigate}
+            sx={{
+              borderRadius: 2,
+              mb: 0.5,
+              color: "text.secondary",
+              "& .MuiListItemIcon-root": { color: "inherit", minWidth: 40 },
+              "&.active": {
+                color: "text.primary",
+                bgcolor: "action.selected",
+                fontWeight: 600,
+              },
+              "&.active .MuiListItemIcon-root": { color: "secondary.main" },
+            }}
+          >
+            <ListItemIcon>
+              <Icon />
+            </ListItemIcon>
+            <ListItemText
+              primary={title}
+              primaryTypographyProps={{ fontWeight: "inherit" }}
+            />
+          </ListItemButton>
+        ))}
+      </List>
+
+      <SocialLinks size="small" sx={{ justifyContent: "center" }} />
     </Box>
   );
 }

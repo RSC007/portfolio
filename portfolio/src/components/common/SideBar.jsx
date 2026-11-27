@@ -1,180 +1,95 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import {
-  Toolbar,
-  useMediaQuery,
-  styled,
-  useTheme,
   Box,
-  CssBaseline,
-  IconButton,
   Drawer,
-  Divider,
+  IconButton,
+  Tooltip,
+  useMediaQuery,
+  useTheme,
 } from "@mui/material";
-import MuiAppBar from "@mui/material/AppBar";
 import MenuIcon from "@mui/icons-material/Menu";
-import Brightness6Icon from "@mui/icons-material/Brightness6";
-import Brightness4Icon from "@mui/icons-material/Brightness4";
-import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
-import ChevronRightIcon from "@mui/icons-material/ChevronRight";
+import DarkModeOutlinedIcon from "@mui/icons-material/DarkModeOutlined";
+import LightModeOutlinedIcon from "@mui/icons-material/LightModeOutlined";
 
 import SideBarList from "./SideBarList";
 import { Context } from "../contextApi";
 
-const drawerWidth = 340;
+const drawerWidth = 300;
 
-const Main = styled("main", { shouldForwardProp: (prop) => prop !== "open" })(
-  ({ theme, open }) => ({
-    flexGrow: 1,
-    padding: theme.spacing(3),
-    transition: theme.transitions.create("margin", {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.leavingScreen,
-    }),
-    marginLeft: `-${drawerWidth}px`,
-
-    position: "relative",
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-    paddingX: "56px",
-    height: "100%",
-    overflowY: "auto",
-    ...(open && {
-      transition: theme.transitions.create("margin", {
-        easing: theme.transitions.easing.easeOut,
-        duration: theme.transitions.duration.enteringScreen,
-      }),
-      marginLeft: 0,
-    }),
-  })
-);
-
-const AppBar = styled(MuiAppBar, {
-  shouldForwardProp: (prop) => prop !== "open",
-})(({ theme, open }) => ({
-  transition: theme.transitions.create(["margin", "width"], {
-    easing: theme.transitions.easing.sharp,
-    duration: theme.transitions.duration.leavingScreen,
-  }),
-  ...(open && {
-    width: `calc(100% - ${drawerWidth}px)`,
-    marginLeft: `${drawerWidth}px`,
-    transition: theme.transitions.create(["margin", "width"], {
-      easing: theme.transitions.easing.easeOut,
-      duration: theme.transitions.duration.enteringScreen,
-    }),
-  }),
-}));
-
-const DrawerHeader = styled("div")(({ theme }) => ({
-  display: "flex",
-  alignItems: "center",
-  padding: theme.spacing(0, 1),
-  // necessary for content to be below app bar
-  ...theme.mixins.toolbar,
-  justifyContent: "flex-end",
-}));
+const floatingButtonSx = {
+  position: "fixed",
+  top: 12,
+  zIndex: (t) => t.zIndex.appBar,
+  bgcolor: "background.paper",
+  boxShadow: 2,
+  "&:hover": { bgcolor: "background.paper" },
+};
 
 export default function SideBar({ children }) {
   const theme = useTheme();
-  const [open, setOpen] = useState(true);
+  // noSsr reads the media query synchronously, so the drawer
+  // doesn't flash open on phones during the first render.
+  const isDesktop = useMediaQuery(theme.breakpoints.up("md"), { noSsr: true });
+  const [mobileOpen, setMobileOpen] = useState(false);
 
-  const isToggleSideBar = useMediaQuery("(min-width:900px)");
-
-  const context = useContext(Context);
   const {
     theme: { theme: mode, toggleTheme },
-  } = context;
-
-  const handleDrawerOpen = () => {
-    setOpen(true);
-  };
-
-  const handleDrawerClose = () => {
-    setOpen(false);
-  };
-
-  useEffect(() => {
-    setOpen(isToggleSideBar);
-  }, [isToggleSideBar]);
+  } = useContext(Context);
 
   return (
-    <>
+    <Box sx={{ display: "flex", width: "100%" }}>
       <Box
-        sx={{
-          display: "flex",
-          maxWidth: "100vw",
-          width: "100%",
-          position: "relative",
-        }}
+        component="nav"
+        aria-label="Main navigation"
+        sx={{ width: { md: drawerWidth }, flexShrink: { md: 0 } }}
       >
-        <CssBaseline />
         <Drawer
+          variant={isDesktop ? "permanent" : "temporary"}
+          open={isDesktop || mobileOpen}
+          onClose={() => setMobileOpen(false)}
+          ModalProps={{ keepMounted: true }}
           sx={{
-            width: drawerWidth,
-            flexShrink: 0,
             "& .MuiDrawer-paper": {
               width: drawerWidth,
               boxSizing: "border-box",
               justifyContent: "center",
-              alignItems: "center",
-              position: "relative",
-              height: "100vh",
             },
           }}
-          variant="persistent"
-          anchor="left"
-          open={open}
         >
-          <IconButton
-            sx={{
-              position: "absolute",
-              top: "10px",
-              right: "10px",
-              zIndex: 999,
-              display: { md: "none" },
-            }}
-            onClick={handleDrawerClose}
-          >
-            {theme.direction === "ltr" ? (
-              <ChevronLeftIcon />
-            ) : (
-              <ChevronRightIcon />
-            )}
-          </IconButton>
-          <SideBarList onClose={handleDrawerClose} />
+          <SideBarList onNavigate={() => setMobileOpen(false)} />
         </Drawer>
-        <Main open={open}>
+      </Box>
+
+      <Box
+        component="main"
+        sx={{
+          flexGrow: 1,
+          minWidth: 0,
+          minHeight: "100vh",
+          px: { xs: 2, sm: 4, md: 6 },
+          overflowX: "clip",
+        }}
+      >
+        {!isDesktop && (
           <IconButton
-            color="inherit"
-            onClick={handleDrawerOpen}
-            sx={{
-              position: "absolute",
-              top: "10px",
-              left: "15px",
-              mr: 2,
-              zIndex: 999,
-              ...(open && { display: "none" }),
-            }}
+            aria-label="Open navigation menu"
+            onClick={() => setMobileOpen(true)}
+            sx={{ ...floatingButtonSx, left: 12 }}
           >
             <MenuIcon />
           </IconButton>
-          <Box
-            sx={{
-              position: "absolute",
-              top: "10px",
-              right: "15px",
-              zIndex: 999,
-              height: "100vh",
-            }}
+        )}
+        <Tooltip title={`Switch to ${mode === "dark" ? "light" : "dark"} mode`}>
+          <IconButton
+            aria-label={`Switch to ${mode === "dark" ? "light" : "dark"} mode`}
+            onClick={toggleTheme}
+            sx={{ ...floatingButtonSx, right: 12 }}
           >
-            <IconButton color="inherit" onClick={toggleTheme}>
-              {mode === "dark" ? <Brightness6Icon /> : <Brightness4Icon />}
-            </IconButton>
-          </Box>
-          {children}
-        </Main>
+            {mode === "dark" ? <LightModeOutlinedIcon /> : <DarkModeOutlinedIcon />}
+          </IconButton>
+        </Tooltip>
+        {children}
       </Box>
-    </>
+    </Box>
   );
 }
