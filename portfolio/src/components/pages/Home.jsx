@@ -1,7 +1,7 @@
 import { Avatar, Box, Paper, Typography } from "@mui/material";
 import { Icon } from "@iconify/react";
-import Typed from "react-typed";
-import Fade from "react-reveal/Fade";
+import { ReactTyped as Typed } from "react-typed";
+import { Fade } from "react-awesome-reveal";
 
 import MyPic from "../assets/Home.jpg";
 
@@ -12,7 +12,7 @@ export default function Home() {
     window.open(url, "_blank");
   };
   return (
-    <Fade left>
+    <Fade direction="left" triggerOnce>
       <Box
         sx={{
           margin: "auto",
@@ -78,9 +78,10 @@ export default function Home() {
             >
               <Typed
                 strings={[
+                  "React JS Developer",
                   "Frontend Developer",
-                  "React Js Developer",
-                  "Freelancer",
+                  "Next.js Developer",
+                  "Software Developer",
                 ]}
                 typeSpeed={75}
                 backSpeed={75}

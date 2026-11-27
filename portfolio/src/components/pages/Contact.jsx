@@ -1,7 +1,7 @@
 import { Box, Button, TextField, Typography } from "@mui/material";
-import { Map, TileLayer, Marker } from "react-leaflet";
+import { MapContainer, TileLayer, Marker } from "react-leaflet";
 import emailjs from "@emailjs/browser";
-import { Fade } from "react-reveal";
+import { Fade } from "react-awesome-reveal";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 
@@ -51,7 +51,7 @@ export default function Contact() {
   const onReset = () => resetForm();
 
   return (
-    <Fade left>
+    <Fade direction="left" triggerOnce>
       <Box
         sx={{
           display: "flex",
@@ -75,7 +75,7 @@ export default function Contact() {
             Get in Touch
           </Typography>
           <Box>
-            <Map
+            <MapContainer
               className="markercluster-map"
               center={location}
               zoom={4}
@@ -86,7 +86,7 @@ export default function Contact() {
                 attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
               />
               <Marker position={location}></Marker>
-            </Map>
+            </MapContainer>
           </Box>
 
           {/* Form */}

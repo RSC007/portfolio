@@ -5,23 +5,24 @@ import {
   Accordion,
   AccordionDetails,
   AccordionSummary,
-  Menu,
   List,
   ListItem,
 } from "@mui/material";
-import { Fade } from "react-reveal";
+import { Fade } from "react-awesome-reveal";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { Icon } from "@iconify/react";
 
+import { projects } from "../constants";
+
 export default function Projects() {
-  const [expanded, setExpanded] = useState("panel1");
+  const [expanded, setExpanded] = useState("panel0");
 
   const handleChange = (panel) => (event, isExpanded) => {
     setExpanded(isExpanded ? panel : false);
   };
 
   return (
-    <Fade left>
+    <Fade direction="left" triggerOnce>
       <Box
         sx={{
           display: "flex",
@@ -45,186 +46,67 @@ export default function Projects() {
           </Typography>
 
           <Box>
-            <Accordion
-              expanded={expanded === "panel1"}
-              onChange={handleChange("panel1")}
-            >
-              <AccordionSummary
-                expandIcon={<ExpandMoreIcon />}
-                aria-controls="panel1bh-content"
-                id="panel1bh-header"
-                sx={{
-                  "& .MuiAccordionSummary-content": {
-                    flexWrap: "wrap",
-                  }
-                }}
+            {projects.map((job, ind) => (
+              <Accordion
+                key={job.company}
+                expanded={expanded === `panel${ind}`}
+                onChange={handleChange(`panel${ind}`)}
               >
-                <Typography sx={{ width: "33%", flexShrink: 0 }}>
-                  Bigscal Technologies (On-Site)
-                </Typography>
-                <Typography sx={{ color: "text.secondary" }}>
-                  June-2021 To Dec-2022
-                </Typography>
-              </AccordionSummary>
-              <AccordionDetails>
-                <Typography variant="h5" fontWeight={600}>
-                  CEM & GNE admin panel
-                </Typography>
-                <List>
-                  <ListItem>
-                    <Typography>
-                      Completed the internship in frontend up to 6 month.
-                    </Typography>
-                  </ListItem>
-                  <ListItem>
-                    <Typography>
-                      Worked on two admin panels: GNE and CEM, leveraging a
-                      variety of technologies including Formik, Ag-Grid,
-                      Bootstrap & RTK.{" "}
-                    </Typography>
-                  </ListItem>
-                  <ListItem>
-                    <Typography>
-                      In the GNE (Gifts and Entertainment) project, an admin
-                      panel allowed individuals at various organizational levels
-                      to assign ranks to clients. These rankings were used by
-                      stakeholders to determine the distribution of gifts and
-                      vacation packages. In the CEM (Contact Event Management)
-                      project, events were organized to distribute these prizes
-                      to clients.{" "}
-                    </Typography>
-                  </ListItem>
-                  <ListItem>
-                    <Typography>
-                      Regularly attended stand-up calls with the Project
-                      /manager to discuss project progress updates, and task
-                      assignment.{" "}
-                    </Typography>
-                  </ListItem>
-                  <ListItem>
-                    <Typography>
-                      Demonstrated strong proficiency in React development,
-                      utilizing the latest industry best practices.
-                    </Typography>
-                  </ListItem>
-                </List>
-              </AccordionDetails>
-            </Accordion>
-            <Accordion
-              expanded={expanded === "panel2"}
-              onChange={handleChange("panel2")}
-            >
-              <AccordionSummary
-                expandIcon={<ExpandMoreIcon />}
-                aria-controls="panel2bh-content"
-                id="panel2bh-header"
-                sx={{
-                  "& .MuiAccordionSummary-content": {
-                    flexWrap: "wrap",
-                  }
-                }}
-              >
-                <Typography sx={{ width: "33%", flexShrink: 0 }}>
-                  ContactPoint360 (WFH)
-                </Typography>
-                <Typography sx={{ color: "text.secondary" }}>
-                  Dec-2022 To Present
-                </Typography>
-              </AccordionSummary>
-              <AccordionDetails>
-                <Typography
-                  variant="h5"
-                  fontWeight={600}
+                <AccordionSummary
+                  expandIcon={<ExpandMoreIcon />}
+                  aria-controls={`panel${ind}bh-content`}
+                  id={`panel${ind}bh-header`}
                   sx={{
-                    cursor: "pointer",
-                  }}
-                  onClick={() => {
-                    window.open(
-                      "https://contactpoint360.h2r.ai/app/dashboard",
-                      "_blank"
-                    );
+                    "& .MuiAccordionSummary-content": {
+                      flexWrap: "wrap",
+                    },
                   }}
                 >
-                  <Icon
-                    icon="prime:link"
-                    style={{
-                      color: "#6464af",
-                      width: "22px",
-                      height: "22px",
-                      verticalAlign: "middle",
-                      cursor: "pointer",
-                    }}
-                  />{" "}
-                  H2R (Hire to Rehire)
-                </Typography>
-                <List>
-                  <ListItem>
-                    <Typography>
-                      Developed an advanced HRMS system using React, Typescript,
-                      Material UI, and other cutting-edge technologies.
-                    </Typography>
-                  </ListItem>
-                  <ListItem>
-                    <Typography>
-                      This system effectively streamlines HR operations,
-                      encompassing the entire spectrum from streamlined hiring
-                      procedures to smooth offboarding processes.{" "}
-                    </Typography>
-                  </ListItem>
-                  <ListItem>
-                    <Typography>
-                      Created role-based dashboards for HR (H2R) and feedback,
-                      serving both administrators and employees effectively
-                      (Module: Alert (Email distribute), Time Off(Leave
-                      management) other more).{" "}
-                    </Typography>
-                  </ListItem>
-                  <ListItem>
-                    <Typography>
-                      Collaborate with back-end developers and product managers
-                      to implement new features.{" "}
-                    </Typography>
-                  </ListItem>
-                  <ListItem>
-                    <Typography>
-                      Developed an advanced HRMS system using React, Typescript,
-                      Material UI, and other cutting-edge technologies.
-                    </Typography>
-                  </ListItem>
-                </List>
-                <Typography
-                  variant="h5"
-                  fontWeight={600}
-                  sx={{ cursor: "pointer" }}
-                  onClick={() => {
-                    window.open(
-                      "http://dvcareer.cp360apps.com/About",
-                      "_blank"
-                    );
-                  }}
-                >
-                  <Icon
-                    icon="prime:link"
-                    style={{
-                      color: "#6464af",
-                      width: "22px",
-                      height: "22px",
-                      verticalAlign: "middle",
-                      cursor: "pointer",
-                    }}
-                  />{" "}
-                  Careers
-                </Typography>
-                <List>
-                  <ListItem>
-                    <Typography>
-                      Provided the new design and code refactor support. using
-                      the technologies like Material UI, Axios.
-                    </Typography>
-                  </ListItem>
-                </List>
-              </AccordionDetails>
-            </Accordion>
+                  <Typography sx={{ width: "33%", flexShrink: 0 }}>
+                    {job.company}
+                  </Typography>
+                  <Typography sx={{ color: "text.secondary" }}>
+                    {job.period}
+                  </Typography>
+                </AccordionSummary>
+                <AccordionDetails>
+                  {job.products.map((product) => (
+                    <Box key={product.name}>
+                      <Typography
+                        variant="h5"
+                        fontWeight={600}
+                        sx={{ cursor: product.url ? "pointer" : "default" }}
+                        onClick={() =>
+                          product.url && window.open(product.url, "_blank")
+                        }
+                      >
+                        {product.url && (
+                          <>
+                            <Icon
+                              icon="prime:link"
+                              style={{
+                                color: "#6464af",
+                                width: "22px",
+                                height: "22px",
+                                verticalAlign: "middle",
+                              }}
+                            />{" "}
+                          </>
+                        )}
+                        {product.name}
+                      </Typography>
+                      <List>
+                        {product.points.map((point) => (
+                          <ListItem key={point}>
+                            <Typography>{point}</Typography>
+                          </ListItem>
+                        ))}
+                      </List>
+                    </Box>
+                  ))}
+                </AccordionDetails>
+              </Accordion>
+            ))}
           </Box>
         </Box>
       </Box>

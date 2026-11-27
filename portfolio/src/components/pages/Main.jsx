@@ -1,5 +1,5 @@
 import { Box } from "@mui/material";
-import Bounce from "react-reveal/Bounce";
+import { Bounce } from "react-awesome-reveal";
 
 import Home from "./sections/Home";
 
@@ -14,7 +14,7 @@ export default function Main() {
         height: "100vh"
       }}
     >
-      <Bounce top>
+      <Bounce triggerOnce>
         <Home />
       </Bounce>
     </Box>

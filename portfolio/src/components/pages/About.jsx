@@ -8,7 +8,7 @@ import {
   LinearProgress,
   alpha,
 } from "@mui/material";
-import { Fade } from "react-reveal";
+import { Fade } from "react-awesome-reveal";
 import ArrowRightIcon from "@mui/icons-material/ArrowRight";
 
 import MyPic from "../assets/About2.jpg";
@@ -21,11 +21,13 @@ import {
   interest,
   experiance,
   education,
+  designation,
+  summary,
 } from "../constants";
 
 export default function About() {
   return (
-    <Fade left>
+    <Fade direction="left" triggerOnce>
       <Box
         sx={{
           display: "flex",
@@ -60,15 +62,11 @@ export default function About() {
           {/* Information  */}
           <Box marginBottom="56px">
             <Typography>Rushikesh Chitte</Typography>
-            <Typography variant="subtitle2">JavaScript Developer</Typography>
+            <Typography variant="subtitle2">{designation}</Typography>
             <Divider sx={{ marginY: 3 }} />
 
             <Typography marginBottom={2} variant="subtitle2">
-              Dedicated and skilled React.js developer with 2.6+ years of hands
-              on experience in building dynamic and responsive web applications.
-              Proficient in creating interactive user interfaces and ensuring
-              seamless user experiences through the use of React components,
-              state management, and third-party libraries.
+              {summary}
             </Typography>
             <Divider sx={{ marginY: 3 }} />
 
