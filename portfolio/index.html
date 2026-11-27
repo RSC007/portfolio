@@ -3,18 +3,36 @@
 
 <head>
   <meta charset="UTF-8" />
-  <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-  <!-- Leaf Let -->
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
-    integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
-  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
-    integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
-
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Rushikesh Chitte | React JS Developer</title>
+  <meta name="description"
+    content="Rushikesh Chitte - React.js developer with 5+ years of experience building scalable healthcare, HRMS and enterprise web apps with React, Next.js, Redux and Material UI." />
+  <meta name="author" content="Rushikesh Chitte" />
+  <meta name="theme-color" content="#212121" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+  <!-- Social previews -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Rushikesh Chitte | React JS Developer" />
+  <meta property="og:description"
+    content="React.js developer with 5+ years of experience building scalable web applications." />
+  <meta name="twitter:card" content="summary" />
+
+  <!-- Paint the saved theme's background before JS loads to avoid a white flash -->
+  <script>
+    (function () {
+      try {
+        var t = localStorage.getItem("theme");
+        if (!t) t = window.matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark";
+        document.documentElement.style.background = t === "light" ? "#ffffff" : "#212121";
+        document.documentElement.style.colorScheme = t;
+      } catch (e) { }
+    })();
+  </script>
 </head>
 
 <body>
+  <noscript>This site needs JavaScript enabled to display.</noscript>
   <div id="root"></div>
   <script type="module" src="/src/main.jsx"></script>
 </body>

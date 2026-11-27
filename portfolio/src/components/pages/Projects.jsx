@@ -5,110 +5,89 @@ import {
   Accordion,
   AccordionDetails,
   AccordionSummary,
-  List,
-  ListItem,
+  Link,
 } from "@mui/material";
 import { Fade } from "react-awesome-reveal";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import { Icon } from "@iconify/react";
+import OpenInNewIcon from "@mui/icons-material/OpenInNew";
 
 import { projects } from "../constants";
 
 export default function Projects() {
-  const [expanded, setExpanded] = useState("panel0");
-
-  const handleChange = (panel) => (event, isExpanded) => {
-    setExpanded(isExpanded ? panel : false);
-  };
+  const [expanded, setExpanded] = useState(0);
 
   return (
-    <Fade direction="left" triggerOnce>
-      <Box
-        sx={{
-          display: "flex",
-          flexDirection: "column",
-          justifyContent: "center",
-          alignItems: "center",
-          minHeight: "100vh",
-          paddingY: "56px",
-        }}
-      >
-        <Box sx={{ width: "90%" }}>
-          <Typography
-            sx={{
-              fontSize: "24px",
-              fontWeight: 700,
-              letterSpacing: "2px",
-              marginBottom: 5,
-            }}
-          >
-            PortFolio/Experiance
-          </Typography>
+    <Fade direction="left" triggerOnce duration={600}>
+      <Box sx={{ maxWidth: 1100, mx: "auto", py: { xs: 10, md: 8 } }}>
+        <Typography component="h1" sx={{ fontSize: 32, fontWeight: 700, letterSpacing: "2px", mb: 1 }}>
+          Portfolio &amp; Experience
+        </Typography>
+        <Typography color="text.secondary" sx={{ mb: 5 }}>
+          Products I&apos;ve built and shipped, grouped by company.
+        </Typography>
 
-          <Box>
-            {projects.map((job, ind) => (
-              <Accordion
-                key={job.company}
-                expanded={expanded === `panel${ind}`}
-                onChange={handleChange(`panel${ind}`)}
-              >
-                <AccordionSummary
-                  expandIcon={<ExpandMoreIcon />}
-                  aria-controls={`panel${ind}bh-content`}
-                  id={`panel${ind}bh-header`}
-                  sx={{
-                    "& .MuiAccordionSummary-content": {
-                      flexWrap: "wrap",
-                    },
-                  }}
-                >
-                  <Typography sx={{ width: "33%", flexShrink: 0 }}>
-                    {job.company}
-                  </Typography>
-                  <Typography sx={{ color: "text.secondary" }}>
-                    {job.period}
-                  </Typography>
-                </AccordionSummary>
-                <AccordionDetails>
-                  {job.products.map((product) => (
-                    <Box key={product.name}>
-                      <Typography
-                        variant="h5"
-                        fontWeight={600}
-                        sx={{ cursor: product.url ? "pointer" : "default" }}
-                        onClick={() =>
-                          product.url && window.open(product.url, "_blank")
-                        }
+        {projects.map((job, ind) => (
+          <Accordion
+            key={job.company}
+            expanded={expanded === ind}
+            onChange={(_, isExpanded) => setExpanded(isExpanded ? ind : false)}
+            disableGutters
+            sx={{ mb: 2, borderRadius: 3, "&:before": { display: "none" }, overflow: "hidden" }}
+          >
+            <AccordionSummary
+              expandIcon={<ExpandMoreIcon />}
+              aria-controls={`panel${ind}-content`}
+              id={`panel${ind}-header`}
+              sx={{ px: { xs: 2, sm: 3 }, py: 1 }}
+            >
+              <Box sx={{ display: "flex", flexWrap: "wrap", columnGap: 3, rowGap: 0.5, alignItems: "baseline" }}>
+                <Typography component="h2" sx={{ fontWeight: 700, fontSize: 18 }}>
+                  {job.company}
+                </Typography>
+                <Typography variant="body2" color="text.secondary">
+                  {job.period}
+                </Typography>
+              </Box>
+            </AccordionSummary>
+            <AccordionDetails sx={{ px: { xs: 2, sm: 3 }, pb: 3 }}>
+              {job.products.map((product) => (
+                <Box key={product.name} sx={{ "&:not(:first-of-type)": { mt: 4 } }}>
+                  <Typography component="h3" variant="h6" fontWeight={600}>
+                    {product.url ? (
+                      <Link
+                        href={product.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        underline="hover"
+                        color="inherit"
+                        sx={{ display: "inline-flex", alignItems: "center", gap: 1 }}
                       >
-                        {product.url && (
-                          <>
-                            <Icon
-                              icon="prime:link"
-                              style={{
-                                color: "#6464af",
-                                width: "22px",
-                                height: "22px",
-                                verticalAlign: "middle",
-                              }}
-                            />{" "}
-                          </>
-                        )}
                         {product.name}
-                      </Typography>
-                      <List>
-                        {product.points.map((point) => (
-                          <ListItem key={point}>
-                            <Typography>{point}</Typography>
-                          </ListItem>
-                        ))}
-                      </List>
-                    </Box>
-                  ))}
-                </AccordionDetails>
-              </Accordion>
-            ))}
-          </Box>
-        </Box>
+                        <OpenInNewIcon fontSize="small" sx={{ color: "secondary.main" }} />
+                      </Link>
+                    ) : (
+                      product.name
+                    )}
+                  </Typography>
+                  <Box
+                    component="ul"
+                    sx={{
+                      pl: 2.5,
+                      mt: 1.5,
+                      mb: 0,
+                      "& li": { mb: 1, lineHeight: 1.7, color: "text.secondary" },
+                      "& li::marker": { color: "secondary.main" },
+                    }}
+                  >
+                    {product.points.map((point) => (
+                      <li key={point}>{point}</li>
+                    ))}
+                  </Box>
+                </Box>
+              ))}
+            </AccordionDetails>
+          </Accordion>
+        ))}
       </Box>
     </Fade>
   );

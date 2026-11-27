@@ -7,9 +7,31 @@ function getAge(birthDate) {
   return age;
 }
 
-export const backgroundColor = "#f8f8f8";
+export const fullName = "Rushikesh Chitte";
 
 export const designation = "React JS Developer";
+
+export const email = "rushichitte1998+work@gmail.com";
+export const phone = "+91-70439-52537";
+export const location = "Surat, Gujarat, India";
+export const cvUrl =
+  "https://drive.google.com/file/d/1T2VevKk_tVhiMKS_1PFVpv4XZ9rQ8zFi/view?usp=sharing";
+
+export const socialLinks = [
+  { name: "LinkedIn", url: "https://www.linkedin.com/in/rushikesh-chitte-26b786166/" },
+  { name: "Twitter", url: "https://twitter.com/RUSHIKE32714454" },
+  { name: "Instagram", url: "https://www.instagram.com/rs_chitte/" },
+  { name: "Facebook", url: "https://www.facebook.com/profile.php?id=100009133947674" },
+];
+
+export const codingProfiles = [
+  { name: "LeetCode", count: "76+", url: "https://leetcode.com/rushichitte1998/" },
+  {
+    name: "Coding Ninjas",
+    count: "132+",
+    url: "https://www.codingninjas.com/studio/profile/025be801-4500-45a0-8d11-88f75b3cdf3f",
+  },
+];
 
 export const summary =
   "React.js Developer with 5+ years of experience building scalable web applications using React, JavaScript, Next.js, Redux, and Context API. Experienced in developing complex healthcare, HRMS, and enterprise applications with expertise in state management, API integration, PDF generation, performance optimization, and reusable component development. Skilled in leveraging AI-assisted development tools such as Claude, Codex, ChatGPT, and Gemini to improve coding, debugging, refactoring, and development productivity.";
@@ -30,10 +52,12 @@ export const bioList = [
   {
     title: "Email",
     value: "rushichitte1998+work@gmail.com",
+    href: "mailto:rushichitte1998+work@gmail.com",
   },
   {
     title: "Phone",
     value: "+91-70439-52537",
+    href: "tel:+917043952537",
   },
   {
     title: "Nationality",
@@ -49,7 +73,7 @@ export const bioList = [
   },
   {
     title: "Interest",
-    value: "Traveling, Learing, Anime",
+    value: "Traveling, Learning, Anime",
   },
   {
     title: "Freelance",
@@ -57,7 +81,7 @@ export const bioList = [
   },
 ];
 
-export const coddingLanguage = [
+export const codingLanguage = [
   {
     title: "JavaScript",
     value: 80,
@@ -113,7 +137,7 @@ export const interest = [
   "Learning languages",
 ];
 
-export const experiance = [
+export const experience = [
   {
     period: "June-2024 To Present",
     company: "EveryDose Innovations, Pune",

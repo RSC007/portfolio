@@ -1,79 +1,87 @@
-import { Avatar, Box, Paper, Typography } from "@mui/material";
-import { Icon } from "@iconify/react";
+import { Link as RouterLink } from "react-router-dom";
+import { Box, Button, Paper, Typography } from "@mui/material";
 import { ReactTyped as Typed } from "react-typed";
 import { Fade } from "react-awesome-reveal";
 
-import MyPic from "../assets/Home.jpg";
-
+import MyPic from "../assets/home.webp";
+import SocialLinks from "../common/SocialLinks";
+import { codingProfiles, fullName } from "../constants";
 import "./style.css";
 
+const center = { md: "left", xs: "center" };
+const justify = { md: "flex-start", xs: "center" };
+
 export default function Home() {
-  const onRedirect = (url = "") => {
-    window.open(url, "_blank");
-  };
   return (
-    <Fade direction="left" triggerOnce>
+    <Fade direction="left" triggerOnce duration={600}>
       <Box
         sx={{
-          margin: "auto",
+          minHeight: "100vh",
           display: "flex",
-          justifyContent: "center",
           alignItems: "center",
-          height: "100vh",
-          flexDirection: "column",
+          justifyContent: "center",
+          py: { xs: 10, md: 6 },
         }}
       >
         <Box
           sx={{
-            flexWrap: "wrap",
             display: "flex",
+            flexWrap: "wrap",
             justifyContent: "center",
             alignItems: "center",
-            gap: 4,
-            minHeight: "600px",
-            height: "100%",
-            maxWidth: "900px",
+            gap: { xs: 4, md: 6 },
+            maxWidth: 960,
             width: "100%",
           }}
         >
           <Box
             id="my-profile"
-            sx={{
-              width: { md: "350px", sm: "350px", xs: "250px" },
-              height: "auto",
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-            }}
             component="img"
             src={MyPic}
-          ></Box>
-          <Box
-            display="flex"
-            flexDirection="column"
-            gap={2}
-            paddingX={2}
+            alt={`Portrait of ${fullName}`}
+            width={350}
+            height={350}
+            fetchpriority="high"
+            decoding="async"
             sx={{
-              marginTop: 0,
+              width: { sm: 350, xs: 240 },
+              height: "auto",
+              aspectRatio: "1 / 1",
+              objectFit: "cover",
+            }}
+          />
+
+          <Box
+            sx={{
+              display: "flex",
+              flexDirection: "column",
+              gap: 2,
+              px: 2,
+              flex: "1 1 320px",
+              maxWidth: 520,
             }}
           >
             <Typography
-              variant="h3"
+              component="h1"
               sx={{
-                textAlign: { md: "left", sm: "center", xs: "center" },
-                fontWeight: 600,
-                letterSpacing: "2px",
-                textDecoration: "underline",
+                textAlign: center,
+                fontWeight: 700,
+                letterSpacing: "1px",
+                fontSize: { xs: 34, sm: 44, md: 48 },
+                lineHeight: 1.15,
               }}
             >
-              Rushikesh Chitte
+              {fullName}
             </Typography>
+
             <Typography
+              component="p"
               sx={{
-                textAlign: { md: "left", sm: "center", xs: "center" },
+                textAlign: center,
                 fontWeight: 500,
-                fontSize: 32,
-                letterSpacing: "2px",
+                fontSize: { xs: 22, sm: 28 },
+                color: "secondary.main",
+                minHeight: "1.5em",
               }}
             >
               <Typed
@@ -84,178 +92,65 @@ export default function Home() {
                   "Software Developer",
                 ]}
                 typeSpeed={75}
-                backSpeed={75}
-                loop={true}
+                backSpeed={50}
+                backDelay={1500}
+                loop
               />
-            </Typography>
-            <Typography
-              variant="subtitle2"
-              sx={{
-                textAlign: { md: "left", sm: "center", xs: "center" },
-                fontWeight: 600,
-                lineHeight: 2,
-                letterSpacing: "2px",
-                color: "#767676",
-              }}
-            >
-              Creative developer based in Gujarat, India and <br />
-              happy to travel all over the World
             </Typography>
 
-            <Box
-              marginTop={2}
-              display="flex"
-              gap={2}
-              alignItems="center"
+            <Typography
               sx={{
-                justifyContent: {
-                  md: "flex-start",
-                  sm: "center",
-                  xs: "center",
-                },
+                textAlign: center,
+                lineHeight: 1.8,
+                color: "text.secondary",
               }}
             >
-              <Icon
-                id="social-icon"
-                style={{
-                  width: 22,
-                  height: 22,
-                  cursor: "pointer",
-                }}
-                icon="line-md:linkedin"
-                onClick={() =>
-                  onRedirect(
-                    "https://www.linkedin.com/in/rushikesh-chitte-26b786166/"
-                  )
-                }
-              />
-              <Icon
-                id="social-icon"
-                style={{
-                  width: 22,
-                  height: 22,
-                  cursor: "pointer",
-                }}
-                icon="ph:twitter-logo-fill"
-                onClick={() =>
-                  onRedirect("https://twitter.com/RUSHIKE32714454")
-                }
-              />
-              <Icon
-                id="social-icon"
-                style={{
-                  width: 22,
-                  height: 22,
-                  cursor: "pointer",
-                }}
-                icon="formkit:instagram"
-                onClick={() =>
-                  onRedirect("https://www.instagram.com/rs_chitte/")
-                }
-              />
-              <Icon
-                id="social-icon"
-                style={{
-                  width: 22,
-                  height: 22,
-                  cursor: "pointer",
-                }}
-                icon="gg:facebook"
-                onClick={() =>
-                  onRedirect(
-                    "https://www.facebook.com/profile.php?id=100009133947674"
-                  )
-                }
-              />
+              5+ years building scalable healthcare, HRMS and enterprise web
+              apps. Based in Gujarat, India and happy to travel all over the
+              world.
+            </Typography>
+
+            <Box sx={{ display: "flex", gap: 2, justifyContent: justify, flexWrap: "wrap", mt: 1 }}>
+              <Button variant="contained" size="large" component={RouterLink} to="/app/portfolio">
+                View my work
+              </Button>
+              <Button variant="outlined" color="secondary" size="large" component={RouterLink} to="/app/contact">
+                Get in touch
+              </Button>
             </Box>
 
-            {/* Active Platform */}
-            <Box
-              sx={{
-                display: "flex",
-                gap: 3,
-                justifyContent: {
-                  md: "flex-start",
-                  sm: "center",
-                  xs: "center",
-                },
-              }}
-            >
-              <Box
-                sx={{
-                  display: "flex",
-                  justifyContent: "center",
-                  alignItems: "center",
-                  flexDirection: "column",
-                  borderRadius: "12px",
-                }}
-              >
-                <Typography variant="subtitle1" letterSpacing="4px">
-                  LeetCode
-                </Typography>
+            <SocialLinks sx={{ justifyContent: justify }} />
+
+            {/* Coding profiles */}
+            <Box sx={{ display: "flex", gap: 2, justifyContent: justify, flexWrap: "wrap" }}>
+              {codingProfiles.map(({ name, count, url }) => (
                 <Paper
+                  key={name}
+                  component="a"
+                  href={url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  variant="outlined"
                   sx={{
-                    maxWidth: "100px",
-                    height: "75px",
-                    display: "flex",
-                    justifyContent: "center",
-                    alignItems: "center",
-                    borderRadius: "12px",
-                    padding: "16px",
-                    cursor: "pointer",
-                    letterSpacing: "2px",
+                    px: 3,
+                    py: 1.5,
+                    minWidth: 140,
+                    textAlign: "center",
+                    textDecoration: "none",
+                    color: "inherit",
+                    borderRadius: 3,
+                    transition: "transform .2s, border-color .2s",
+                    "&:hover": { transform: "translateY(-3px)", borderColor: "secondary.main" },
                   }}
-                  onClick={() =>
-                    onRedirect("https://leetcode.com/rushichitte1998/")
-                  }
                 >
-                  <Typography
-                    letterSpacing="2px"
-                    fontSize="40px"
-                    fontWeight={800}
-                  >
-                    76+
+                  <Typography sx={{ fontSize: 32, fontWeight: 800, lineHeight: 1.2 }}>
+                    {count}
+                  </Typography>
+                  <Typography variant="body2" color="text.secondary">
+                    {name} problems
                   </Typography>
                 </Paper>
-              </Box>
-              <Box
-                sx={{
-                  display: "flex",
-                  justifyContent: "center",
-                  alignItems: "center",
-                  flexDirection: "column",
-                  borderRadius: "12px",
-                }}
-              >
-                <Typography variant="subtitle1" letterSpacing="4px">
-                  Codding Nijas
-                </Typography>
-                <Paper
-                  sx={{
-                    maxWidth: "100px",
-                    height: "75px",
-                    display: "flex",
-                    justifyContent: "center",
-                    alignItems: "center",
-                    borderRadius: "12px",
-                    padding: "16px",
-                    cursor: "pointer",
-                  }}
-                  onClick={() =>
-                    onRedirect(
-                      "https://www.codingninjas.com/studio/profile/025be801-4500-45a0-8d11-88f75b3cdf3f"
-                    )
-                  }
-                >
-                  <Typography
-                    letterSpacing="2px"
-                    fontSize="40px"
-                    fontWeight={800}
-                  >
-                    132+
-                  </Typography>
-                </Paper>
-              </Box>
+              ))}
             </Box>
           </Box>
         </Box>
