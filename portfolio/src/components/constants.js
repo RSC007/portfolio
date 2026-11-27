@@ -15,7 +15,7 @@ export const email = "rushichitte1998+work@gmail.com";
 export const phone = "+91-70439-52537";
 export const location = "Surat, Gujarat, India";
 export const cvUrl =
-  "https://drive.google.com/file/d/1T2VevKk_tVhiMKS_1PFVpv4XZ9rQ8zFi/view?usp=sharing";
+  "https://drive.google.com/file/d/1ceklCokiZ06oBNhBwG6XRwGvkLmyq-5G/view?usp=sharing";
 
 export const socialLinks = [
   { name: "LinkedIn", url: "https://www.linkedin.com/in/rushikesh-chitte-26b786166/" },
